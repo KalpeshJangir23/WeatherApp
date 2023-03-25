@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:weather_app/colorss.dart';
 
 import '../controller/global_controller.dart';
 
@@ -16,7 +18,7 @@ class _HeaderrState extends State<Headerr> {
   final GlobalController globalController =
       Get.put(GlobalController(), permanent: true);
   String city = "";
-
+  String date = DateFormat("yMMMMd").format(DateTime.now());
   @override
   void initState() {
     getAddress(globalController.getLatitude().value,
@@ -38,14 +40,22 @@ class _HeaderrState extends State<Headerr> {
       children: [
         Container(
           margin: const EdgeInsets.only(left: 20, right: 20),
+          alignment: Alignment.topLeft,
           child: Text(
             city,
-            style: GoogleFonts.blackHanSans(
-                fontSize: 36,
-                fontWeight: FontWeight.bold,
-                color: Colors.cyanAccent),
+            style: GoogleFonts.ubuntu(
+                fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),
           ),
-        )
+        ),
+        Container(
+          margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+          alignment: Alignment.topLeft,
+          child: Text(
+            date,
+            style: GoogleFonts.ubuntu(
+                fontSize: 18, fontWeight: FontWeight.bold, color: goldencolor),
+          ),
+        ),
       ],
     );
   }
